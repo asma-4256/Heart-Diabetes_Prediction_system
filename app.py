@@ -51,7 +51,7 @@ if (selected=='Heart Disease Prediction'):
         
 
     with col2:
-        sex = int(st.selectbox('Gender', ('Male', 'Female')))
+        sex = st.selectbox('Gender', ('Male', 'Female'))
     with col3:
         cp = int(st.selectbox('Chest Pain Type (0-3)', [0, 1, 2, 3]))
     with col1:
@@ -67,7 +67,7 @@ if (selected=='Heart Disease Prediction'):
     with col3:
         exang = int(st.selectbox('Exercise Induced Angina', [1, 0]))
     with col1:
-        oldpeak = int(st.text_input('ST Depression Induced by Exercise'))
+        oldpeak = float(st.text_input('ST Depression Induced by Exercise'))
     with col2:
         slope = int(st.selectbox('Slope of Peak Exercise ST Segment', [0, 1, 2]))
     with col3:
