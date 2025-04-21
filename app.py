@@ -5,7 +5,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 diabetes_model=pickle.load(open('diabetes_model.sav','rb')) 
-heart_model=pickle.load(open('heart_disease_model.sav','rb'))
+heart_disease_model=pickle.load(open('heart_disease_model.sav','rb'))
 
 # --- Stylish Background ---
 st.markdown("""
@@ -77,7 +77,7 @@ if (selected=='Heart Disease Prediction'):
     
     outcome=''
     if st.button('🔍 Predict'):
-        diagnosis=heart_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach,exang, oldpeak, slope, ca, thal]])
+        diagnosis=heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach,exang, oldpeak, slope, ca, thal]])
         if (diagnosis[0] == 0):
             outcome='✅ The person does NOT have Heart Disease.'
         else:
