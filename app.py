@@ -45,39 +45,44 @@ if (selected=='Heart Disease Prediction'):
     st.title('Heart Disease Prediction')
     
     st.header("📝 Enter Your Medical Details:")
+    
     col1,col2,col3=st.columns(3)
+    
     with col1:
-        age = int( st.text_input('Age'))
-        
-
+        age =  st.text_input('Age')
     with col2:
         sex = st.selectbox('Gender', ('Male', 'Female'))
     with col3:
-        cp = int(st.selectbox('Chest Pain Type (0-3)', [0, 1, 2, 3]))
+        cp = st.selectbox('Chest Pain Type (0-3)', [0, 1, 2, 3])
     with col1:
-        trestbps = int(st.text_input('Resting Blood Pressure'))
+        trestbps = st.text_input('Resting Blood Pressure')
     with col2:
-        chol = int(st.text_input('Serum Cholesterol (mg/dl)'))
+        chol = st.text_input('Serum Cholesterol (mg/dl)')
     with col3:
-        fbs = int(st.selectbox('Fasting Blood Sugar > 120 mg/dl', [1, 0]))
+        fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', [1, 0])
     with col1:
-        restecg = int(st.selectbox('Resting ECG Results (0-2)', [0, 1, 2]))
+        restecg = st.selectbox('Resting ECG Results (0-2)', [0, 1, 2])
     with col2:
-        thalach = int(st.text_input('Maximum Heart Rate Achieved'))
+        thalach = st.text_input('Maximum Heart Rate Achieved')
     with col3:
-        exang = int(st.selectbox('Exercise Induced Angina', [1, 0]))
+        exang =st.selectbox('Exercise Induced Angina', [1, 0])
     with col1:
-        oldpeak = float(st.text_input('ST Depression Induced by Exercise'))
+        oldpeak =st.text_input('ST Depression Induced by Exercise')
     with col2:
-        slope = int(st.selectbox('Slope of Peak Exercise ST Segment', [0, 1, 2]))
+        slope = st.selectbox('Slope of Peak Exercise ST Segment', [0, 1, 2])
     with col3:
-        ca = int(st.selectbox('Number of Major Vessels (0-3)', [0, 1, 2, 3]))
+        ca = st.selectbox('Number of Major Vessels (0-3)', [0, 1, 2, 3])
     with col1:
-        thal = int(st.selectbox('Thalassemia (1 = normal; 2 = fixed defect; 3 = reversible defect)', [1, 2, 3]))
+        thal = st.selectbox('Thalassemia (1 = normal; 2 = fixed defect; 3 = reversible defect)', [1, 2, 3])
     
     outcome=''
+    
     if st.button('🔍 Predict'):
-        diagnosis=heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach,exang, oldpeak, slope, ca, thal]])
+        
+        input_data=[age, sex, cp, trestbps, chol, fbs, restecg, thalach,exang, oldpeak, slope, ca, thal]
+        input_data=[float(x) for x in input_data]
+        diagnosis=heart_disease_model.predict([input_data])
+        
         if (diagnosis[0] == 0):
             outcome='✅ The person does NOT have Heart Disease.'
         else:
@@ -89,6 +94,7 @@ if (selected=='Heart Disease Prediction'):
     
     
 elif (selected=='Diabetes Prediction'):
+    
     st.title('Diabetes Prediction')
     
     st.header("📝 Enter Your Medical Details:")
@@ -103,12 +109,17 @@ elif (selected=='Diabetes Prediction'):
     Age	=st.text_input('Age	of the person')
     
     outcome2=''
+    
     if st.button('🔍 Predict'):
-        diagnosis2=diabetes_model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
+        input_data=[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]
+        input_data=[float(x) for x in input_data]
+        diagnosis2=diabetes_model.predict([input_data])
+        
         if (diagnosis2[0] == 0):
             outcome2='✅ The person does NOT have Diabetes Disease.'
         else:
             outcome2='⚠️ The person HAS Dabetes Disease!'
+            
     if outcome2:
         st.subheader('Prediction Result')
         st.success(outcome2)
